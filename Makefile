@@ -12,7 +12,7 @@ push:
 	@docker push ${NAME}
 
 enter:
-	docker run -it --entrypoint bash --rm --volume "${PWD}/workspace:/workspace" ambimax/bats
+	docker run -it --entrypoint bash --rm --volume "${PWD}/workspace:/workspace" "${IMG}"
 
 test:
-	docker run --rm --volume "${PWD}/workspace:/workspace" ambimax/bats -r /workspace/tests/
+	docker run --rm --volume "${PWD}/workspace:/workspace" "${IMG}" -r /workspace/tests/
