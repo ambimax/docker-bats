@@ -19,9 +19,6 @@ jobs:
       - name: Test image
         run: make test
 
-      - name: Additional image tests
-        run: make official-test
-
       - name: Display all docker images
         if: always()
         run: docker images
