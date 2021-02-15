@@ -1,7 +1,7 @@
 #!/bin/usr/env bats
 
-# Load bats-file library only
-load /opt/bats/lib/bats-assert/load.bash
+# Load all libraries
+load /opt/bats/lib/helper.bash
 
 @test 'assert()' {
   touch '/tmp/testfile.log'

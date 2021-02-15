@@ -9,5 +9,5 @@ load /opt/bats/lib/helper.bash
 }
 
 @test 'bats-file test' {
-  assert_file_executable /opt/bats/bin/bats
+  assert_file_executable /usr/local/bin/bats
 }

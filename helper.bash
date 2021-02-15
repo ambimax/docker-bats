@@ -10,5 +10,6 @@ fi
 TESTLIB_DIR=/opt/bats/lib/
 
 # Load library files
+source ${TESTLIB_DIR}/bats-support/load.bash
 source ${TESTLIB_DIR}/bats-assert/load.bash
 source ${TESTLIB_DIR}/bats-file/load.bash
