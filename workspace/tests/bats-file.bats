@@ -1,8 +1,8 @@
 #!/bin/usr/env bats
 
-# Load bats-file library only
-load /opt/bats/lib/bats-file/load.bash
+# Load all libraries
+load /opt/bats/lib/helper.bash
 
 @test 'assert_file_executable' {
-  assert_file_executable /opt/bats/bin/bats
+  assert_file_executable /usr/local/bin/bats
 }

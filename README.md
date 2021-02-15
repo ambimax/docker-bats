@@ -1,9 +1,13 @@
 # ambimax/docker-bats
 
-Docker image for bats testing
+Docker image for bats testing with batteries included
 
-- local testing
-- CI/CD testing like Github Actions
+-   local testing
+-   CI/CD testing like Github Actions
+-   Support for Makefile, docker, docker-compose within bats tests
+-   Includes bats-assert and bats-file libraries
+
+See [workspace/](workspace/) for examples!
 
 ## Usage
 
@@ -29,8 +33,8 @@ docker run --rm --volume "${PWD}:/workspace" ambimax/bats -h
 
 The following libraries are included
 
-- [bats-assert](https://github.com/bats-core/bats-assert)
-- [bats-file](https://github.com/bats-core/bats-file)
+-   [bats-assert](https://github.com/bats-core/bats-assert)
+-   [bats-file](https://github.com/bats-core/bats-file)
 
 ### Load all libraries
 
@@ -83,10 +87,12 @@ load /opt/bats/lib/bats-file/load.bash
 }
 ```
 
+See [workspace/](workspace/) for more examples!
+
 ## Tutorials
 
-- [Testing with bash bats, 02/1919](https://opensource.com/article/19/2/testing-bash-bats)
+-   [Testing with bash bats, 02/1919](https://opensource.com/article/19/2/testing-bash-bats)
 
 ## Authors
 
-- [Tobias Schifftner](https://www.twitter.com/tschifftner), [Ambimax GmbH](https://www.ambimax.de)
+-   [Tobias Schifftner](https://www.twitter.com/tschifftner), [Ambimax GmbH](https://www.ambimax.de)

@@ -1,18 +1,26 @@
 NAME            = ambimax/bats
-TAG             = 1.2.1
+TAG             = 1.2.2
 IMG             = ${NAME}:${TAG}
 LATEST          = ${NAME}:latest
-BATS_CORE_IMAGE = bats/bats:${TAG}
 
 build:
-	docker build --build-arg BATS_CORE_IMAGE=${BATS_CORE_IMAGE} -t "${IMG}" .
+	docker build --tag "${IMG}" .
 
 push:
 	@docker tag "${IMG}" ${LATEST}
 	@docker push ${NAME}
 
 enter:
-	docker run -it --entrypoint bash --rm --volume "${PWD}/workspace:/workspace" "${IMG}"
+	@docker run --rm \
+		--interactive \
+		--entrypoint bash \
+		--volume "${PWD}/workspace:/workspace" \
+		--volume "/var/run/docker.sock:/var/run/docker.sock" \
+		--env DOCKER_HOST="unix:///docker.sock" \
+		"${IMG}"
 
 test:
-	docker run --rm --volume "${PWD}/workspace:/workspace" "${IMG}" -r /workspace/tests/
+	@docker run --tty --rm \
+		--volume "${PWD}/workspace:/workspace" \
+		--volume "/var/run/docker.sock:/var/run/docker.sock" \
+		"${IMG}" -r /workspace/tests/
