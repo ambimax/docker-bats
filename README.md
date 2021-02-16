@@ -1,6 +1,6 @@
 # ambimax/docker-bats
 
-Docker image for bats testing with batteries included
+[Docker image](https://hub.docker.com/r/ambimax/bats) for bats testing with batteries included
 
 -   local testing
 -   CI/CD testing like Github Actions
@@ -27,6 +27,17 @@ Get bats options
 
 ```
 docker run --rm --volume "${PWD}:/workspace" ambimax/bats -h
+```
+
+Use docker in tests (when using a tests/ folder in current directory)
+
+```
+docker run --rm \
+    --tty \
+    --entrypoint bash \
+    --volume "${PWD}:/workspace" \
+    --volume "/var/run/docker.sock:/var/run/docker.sock" \
+    "ambimax/bats:1.2.2" bats -r /workspace/tests/
 ```
 
 ## Libraries
