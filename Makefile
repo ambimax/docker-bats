@@ -8,7 +8,8 @@ build:
 
 push:
 	@docker tag "${IMG}" ${LATEST}
-	@docker push ${NAME}
+	@docker push ${NAME}:${TAG}
+	@docker push ${NAME}:${LATEST}
 
 enter:
 	@docker run --rm \

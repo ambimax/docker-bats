@@ -33,6 +33,14 @@ jobs:
           username: ${{ secrets.DOCKER_REG_USERNAME }}
           password: ${{ secrets.DOCKER_REG_PASSWORD }}
 
+      - name: Docker Hub Description
+        if: github.ref == 'refs/heads/main'
+        uses: peter-evans/dockerhub-description@v2
+        with:
+          username: ${{ secrets.DOCKER_REG_USERNAME }}
+          password: ${{ secrets.DOCKER_REG_PASSWORD }}
+          repository: ambimax/docker-bats
+
       - name: Push image
         if: github.ref == 'refs/heads/main'
         run: make push
