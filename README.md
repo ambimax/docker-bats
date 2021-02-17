@@ -1,5 +1,7 @@
 # ambimax/docker-bats
 
+[![Tests](https://github.com/ambimax/docker-bats/workflows/Tests/badge.svg?branch=main)](https://github.com/ambimax/docker-bats)
+
 [Docker image](https://hub.docker.com/r/ambimax/bats) for bats testing with batteries included
 
 -   local testing
@@ -7,9 +9,38 @@
 -   Support for Makefile, docker, docker-compose within bats tests
 -   Includes bats-assert and bats-file libraries
 
-See [workspace/](workspace/) for examples!
+See [workspace/](https://github.com/ambimax/docker-bats/workspace/) for examples!
 
-## Usage
+Contributions are welcome, see [Github Repository](https://github.com/ambimax/docker-bats)
+
+## Usage with npm
+
+Install bats globally
+
+```
+curl -o install-bats.sh https://raw.githubusercontent.com/ambimax/docker-bats/main/scripts/install-bats.sh; \
+sudo bash install-bats.sh
+```
+
+Run your tests on command line
+
+```
+bats -r tests/
+```
+
+## Usage with Github Action
+
+Add steps to your Github Action job:
+
+```
+    - name: Install bats
+      run: curl -o install-bats.sh https://raw.githubusercontent.com/ambimax/docker-bats/main/scripts/install-bats.sh && sudo bash install-bats.sh
+
+    - name: Run tests
+      run: bats -r tests/
+```
+
+## Usage with docker
 
 Run all tests within tests folder:
 
@@ -44,17 +75,16 @@ docker run --rm \
 
 The following libraries are included
 
+-   [bats-support](https://github.com/bats-core/bats-support)
 -   [bats-assert](https://github.com/bats-core/bats-assert)
--   [bats-file](https://github.com/bats-core/bats-file)
+-   [bats-file](https://github.com/bats-core/bats-file) _(docker container only)_
 
 ### Load all libraries
 
-To use all libraries, load lib helper at the beginning of your test file.
+All libraries are loaded by default
 
 ```
 #!/bin/usr/env bats
-
-load /opt/bats/lib/helper.bash
 
 @test "Build image" {
     run echo "test"
@@ -69,9 +99,6 @@ bats-assert is a helper library providing common assertions for Bats.
 ```
 #!/bin/usr/env bats
 
-# Load bats-assert library only
-load /opt/bats/lib/bats-support/load.bash
-
 @test 'assert()' {
   touch '/tmp/testfile.log'
   assert [ -e '/tmp/testfile.log' ]
@@ -85,20 +112,19 @@ load /opt/bats/lib/bats-support/load.bash
 
 ### bats-file
 
+_Only available within docker container_
+
 bats-file is a helper library providing common filesystem related assertions and helpers for Bats.
 
 ```
 #!/bin/usr/env bats
-
-# Load bats-file library only
-load /opt/bats/lib/bats-file/load.bash
 
 @test 'assert_file_executable' {
   assert_file_executable /path/to/executable-file
 }
 ```
 
-See [workspace/](workspace/) for more examples!
+See [workspace/](https://github.com/ambimax/docker-bats/workspace/) for more examples!
 
 ## Tutorials
 

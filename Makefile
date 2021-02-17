@@ -1,5 +1,5 @@
 NAME            = ambimax/bats
-TAG             = 1.2.2
+TAG             = 1.2.3
 IMG             = ${NAME}:${TAG}
 LATEST          = ${NAME}:latest
 
