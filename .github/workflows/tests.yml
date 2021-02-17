@@ -17,6 +17,9 @@ jobs:
       - name: Build image
         run: make build
 
+      - name: Npm install
+        run: bash scripts/npm-install.sh
+
       - name: Test image
         run: make test
 

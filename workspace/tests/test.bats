@@ -1,8 +1,5 @@
 #!/bin/usr/env bats
 
-# Load all libraries
-load /opt/bats/lib/helper.bash
-
 @test "bats-assert test" {
     run echo "testing"
     assert_output -p 'stin'

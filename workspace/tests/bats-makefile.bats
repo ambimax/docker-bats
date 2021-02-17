@@ -1,8 +1,5 @@
 #!/bin/usr/env bats
 
-# Load all libraries
-load /opt/bats/lib/helper.bash
-
 @test "Make is installed" {
     run  make --version
     assert_output -p "GNU Make"

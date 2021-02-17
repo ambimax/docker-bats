@@ -19,8 +19,13 @@ enter:
 		--env DOCKER_HOST="unix:///docker.sock" \
 		"${IMG}"
 
-test:
+docker-test:
 	@docker run --tty --rm \
 		--volume "${PWD}/workspace:/workspace" \
 		--volume "/var/run/docker.sock:/var/run/docker.sock" \
 		"${IMG}" -r /workspace/tests/
+
+local-test:
+	bats -r workspace/tests/bats-assert.bats
+
+test: local-test docker-test

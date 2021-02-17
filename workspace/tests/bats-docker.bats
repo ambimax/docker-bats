@@ -1,8 +1,5 @@
 #!/bin/usr/env bats
 
-# Load all libraries
-load /opt/bats/lib/helper.bash
-
 @test "Docker is installed" {
     run docker --version
     assert_output -p "Docker version"
