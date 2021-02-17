@@ -36,12 +36,13 @@ RUN set -eu; \
     touch ~/.parallel/will-cite
 
 COPY --from=builder /tmp/bats-core-* /opt/bats-core
-COPY --from=builder /tmp/bats-support-* /opt/bats/lib/bats-support
-COPY --from=builder /tmp/bats-assert-* /opt/bats/lib/bats-assert
-COPY --from=builder /tmp/bats-file-* /opt/bats/lib/bats-file
-COPY helper.bash /opt/bats/lib/helper.bash
+COPY --from=builder /tmp/bats-support-* /opt/bats-core/lib/bats-support
+COPY --from=builder /tmp/bats-assert-* /opt/bats-core/lib/bats-assert
+COPY --from=builder /tmp/bats-file-* /opt/bats-core/lib/bats-file
+COPY helper.bash /opt/bats-core/lib/helper.bash
 
-RUN ln -s /opt/bats-core/bin/bats /usr/local/bin/bats
+RUN echo -e "\n### changed\nsource /opt/bats-core/lib/helper.bash" >> /opt/bats-core/lib/bats-core/test_functions.bash; \
+    ln -s /opt/bats-core/bin/bats /usr/local/bin/bats
 
 WORKDIR /workspace
 

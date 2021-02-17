@@ -7,7 +7,7 @@ if (( BASH_VERSINFO[0] < 4 )); then
 fi
 
 # Set global variables
-TESTLIB_DIR=/opt/bats/lib/
+TESTLIB_DIR=/opt/bats-core/lib/
 
 # Load library files
 source ${TESTLIB_DIR}/bats-support/load.bash
