@@ -14,11 +14,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Npm install
+        run: sudo bash scripts/npm-install.sh
+
       - name: Build image
         run: make build
-
-      - name: Npm install
-        run: bash scripts/npm-install.sh
 
       - name: Test image
         run: make test
